@@ -1,0 +1,54 @@
+<div class="container col-md-4">
+    <div class="card">
+        <div class="card-header">
+            <h3>Modify Stock</h3>
+            <hr>
+            <h4>Current Data Preview:</h4>
+            <ul class="list-group">
+                <li class="list-group-item">Name: {{hardwareModel.name}}</li>
+                <li class="list-group-item">Price: {{hardwareModel.price}} €/u</li>
+                <li class="list-group-item">Stock: {{hardwareModel.stock}} unit/s</li>
+
+            </ul>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="hardwareUpdate"
+                  action="">
+                <div class="form-group">
+                    <label for="">Name</label>
+                    <input name="name"
+                           [(ngModel)]="hardwareModel.name"
+                           formControlName="name_component"
+                           type="text"
+                           class="form-control">
+                    <label *ngIf="hardwareUpdate.get('name_component')?.invalid">Field must be filled, minimun of 4
+                        characters</label>
+                </div>
+                <div class="form-group">
+                    <label for="">Price</label>
+                    <input name="price"
+                           [(ngModel)]="hardwareModel.price"
+                           formControlName="price_component"
+                           type="text"
+                           class="form-control">
+                    <label *ngIf="hardwareUpdate.get('price_component')?.invalid">At least one digit and two decimals
+                        has to be inputted</label>
+                </div>
+                <div class="form-group">
+                    <label for="">Units</label>
+                    <input name="stock"
+                           [(ngModel)]="hardwareModel.stock"
+                           formControlName="stock_component"
+                           type="number"
+                           class="form-control">
+                    <label *ngIf="hardwareUpdate.get('price_component')?.invalid">Only positive whole numbers</label>
+                </div>
+                <div class="container-fluid text-center">
+                    <button (click)="Update(hardwareModel)"
+                            class="btn btn-danger text-center">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

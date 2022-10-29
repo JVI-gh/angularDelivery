@@ -1,0 +1,57 @@
+<div class="container col-md-4">
+    <div class="card">
+        <div class="card-header">
+            <h3>Add to stock</h3>
+            <hr>
+            <h4>Current Data Preview:</h4>
+            <ul class="list-group">
+                <li class="list-group-item">Name: {{hardwareModel.name}}</li>
+                <li class="list-group-item">Price: {{hardwareModel.price}}€/u</li>
+                <li class="list-group-item">Stock: {{hardwareModel.stock}} unit/s</li>
+
+            </ul>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="hardwareAddition"
+                  action="">
+                <div class="form-group">
+                    <label for="">Name</label>
+                    <input name="name"
+                           [(ngModel)]="hardwareModel.name"
+                           formControlName="name_component"
+                           type="text"
+                           class="form-control"
+                           placeholder="Introduce product name">
+                    <label *ngIf="hardwareAddition.get('name_component')?.invalid">Field must be filled, minimun of 4
+                        characters</label>
+                </div>
+                <div class="form-group">
+                    <label for="">Price</label>
+                    <input name="price"
+                           [(ngModel)]="hardwareModel.price"
+                           formControlName="price_component"
+                           type="text"
+                           class="form-control"
+                           placeholder="Introduce price for product">
+                    <label *ngIf="hardwareAddition.get('price_component')?.invalid">At least one digit and two decimals
+                        has to be inputted</label>
+                </div>
+                <div class="form-group">
+                    <label for="">Units</label>
+                    <input name="stock"
+                           [(ngModel)]="hardwareModel.stock"
+                           formControlName="stock_component"
+                           type="number"
+                           class="form-control"
+                           placeholder="Introduce units in stock">
+                    <label *ngIf="hardwareAddition.get('stock_component')?.invalid">Only positive whole numbers</label>
+                </div>
+                <div class="container-fluid text-center">
+                    <button (click)="Save(hardwareModel)"
+                            class="btn btn-danger">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
